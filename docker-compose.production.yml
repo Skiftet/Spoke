@@ -1,0 +1,102 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: spokeprod
+      POSTGRES_PASSWORD: spoke
+      POSTGRES_USER: spoke
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5431:5432
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - redis:/data
+  http:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.docker.env
+    environment:
+      DATABASE_URL: postgres://spoke:spoke@postgres:5432/spokeprod
+      REDIS_URL: redis://redis:6379
+    ports:
+      - 3000:3000
+  job:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    command: ["npm", "run", "prod-job-handler"]
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.docker.env
+    environment:
+      DATABASE_URL: postgres://spoke:spoke@postgres:5432/spokeprod
+      REDIS_URL: redis://redis:6379
+  sender-01:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    command: ["npm", "run", "prod-message-sender-01"]
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.docker.env
+    environment:
+      DATABASE_URL: postgres://spoke:spoke@postgres:5432/spokeprod
+      REDIS_URL: redis://redis:6379
+  sender-234:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    command: ["npm", "run", "prod-message-sender-234"]
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.docker.env
+    environment:
+      DATABASE_URL: postgres://spoke:spoke@postgres:5432/spokeprod
+      REDIS_URL: redis://redis:6379
+  sender-56:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    command: ["npm", "run", "prod-message-sender-56"]
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.docker.env
+    environment:
+      DATABASE_URL: postgres://spoke:spoke@postgres:5432/spokeprod
+      REDIS_URL: redis://redis:6379
+  sender-789:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    command: ["npm", "run", "prod-message-sender-789"]
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - ./.docker.env
+    environment:
+      DATABASE_URL: postgres://spoke:spoke@postgres:5432/spokeprod
+      REDIS_URL: redis://redis:6379
+volumes:
+  postgres:
+    external: false
+  redis:
+    external: false
