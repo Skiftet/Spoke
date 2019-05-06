@@ -31,8 +31,8 @@ if (process.env.DB_JSON || global.DB_JSON) {
       ssl: use_ssl
     },
     pool: {
-      min: process.env.DB_MIN_POOL || 2,
-      max: process.env.DB_MAX_POOL || 10
+      min: process.env.DB_MIN_POOL | 0 || 2,
+      max: process.env.DB_MAX_POOL | 0 || 10
     }
   }
 } else if (process.env.DATABASE_URL) {
@@ -41,8 +41,8 @@ if (process.env.DB_JSON || global.DB_JSON) {
     client: (/postgres/.test(databaseType) ? 'pg' : databaseType),
     connection: process.env.DATABASE_URL,
     pool: {
-      min: process.env.DB_MIN_POOL || 2,
-      max: process.env.DB_MAX_POOL || 10
+      min: process.env.DB_MIN_POOL | 0 || 2,
+      max: process.env.DB_MAX_POOL | 0 || 10
     },
     ssl: use_ssl
   }
