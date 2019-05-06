@@ -10,8 +10,9 @@ RUN yarn
 COPY . ./
 ENV PORT 3000
 ENV NODE_ENV production
-RUN OUTPUT_DIR=./build npm run prod-build-server && \
-    OUTPUT_DIR=./build npm run prod-build-client
+RUN touch .env && \
+    OUTPUT_DIR=./build PUBLIC_DIR=./build/client ASSETS_DIR=./build/client/assets ASSETS_MAP_FILE=assets.json npm run prod-build-server && \
+    OUTPUT_DIR=./build PUBLIC_DIR=./build/client ASSETS_DIR=./build/client/assets ASSETS_MAP_FILE=assets.json npm run prod-build-client
 
 EXPOSE 3000
 # Spoke Runtime
