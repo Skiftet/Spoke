@@ -14,11 +14,18 @@ const styles = {
   sent: {
     fontSize: '13px',
     textAlign: 'right',
-    marginLeft: '24px'
+    marginLeft: '24px',
+    marginRight: '10px',
+    backgroundColor: '#1c9bff',
+    color: '#fff',
+    float: 'right'
   },
   received: {
     fontSize: '13px',
-    marginRight: '24px'
+    marginLeft: '10px',
+    marginRight: '24px',
+    backgroundColor: '#eee',
+    float: 'left'
   }
 }
 
@@ -42,13 +49,20 @@ const MessageList = function MessageList(props) {
   return (
     <List>
       {messages.map(message => (
-        <ListItem
-          disabled
-          style={message.isFromContact ? styles.received : styles.sent}
-          key={message.id}
-          primaryText={message.text}
-          secondaryText={moment(message.createdAt).fromNow()}
-        />
+        <div style={{ clear: 'both' }}>
+          <ListItem
+            disabled
+            style={{
+              borderRadius: '10px',
+              display: 'inline-block',
+              marginBottom: '5px',
+              ...(message.isFromContact ? styles.received : styles.sent)
+            }}
+            key={message.id}
+            primaryText={message.text}
+            secondaryText={moment(message.createdAt).fromNow()}
+          />
+        </div>
       ))}
       {optOutItem}
     </List>
