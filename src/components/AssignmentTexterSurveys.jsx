@@ -87,7 +87,7 @@ class AssignmentTexterSurveys extends Component {
       <MenuItem
         key='clear'
         value='clearResponse'
-        primaryText='Clear response'
+        primaryText='Rensa svar'
       />
     )
 
@@ -128,7 +128,7 @@ class AssignmentTexterSurveys extends Component {
       >
         <CardHeader
           style={styles.cardHeader}
-          title={showAllQuestions ? 'All questions' : 'Current question'}
+          title={showAllQuestions ? 'Alla frågor' : 'Nuvarande fråga'}
           showExpandableButton={interactionSteps.length > 1}
         />
         <CardText

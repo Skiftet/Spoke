@@ -121,7 +121,7 @@ class ScriptList extends React.Component {
         {list}
         {showAddScriptButton ? (
           <FlatButton
-            label='Add new canned response'
+            label='Lägg till nytt sparat svar'
             icon={<CreateIcon />}
             onTouchTap={this.handleOpenDialog}
           />
@@ -132,13 +132,13 @@ class ScriptList extends React.Component {
             open={dialogOpen}
             actions={[
               <FlatButton
-                label='Cancel'
+                label='Avbryt'
                 onTouchTap={this.handleCloseDialog}
               />,
               <Form.Button
                 type='submit'
                 component={GSSubmitButton}
-                label='Save'
+                label='Spara'
               />
             ]}
             onRequestClose={this.handleCloseDialog}

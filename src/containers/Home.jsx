@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     ...theme.components.logoDiv
   },
   logoImg: {
-    width: 120,
+    maxHeight: 95,
     ...theme.components.logoImg
   },
   header: {
@@ -77,10 +77,10 @@ class Home extends React.Component {
       return (
         <div>
           <div className={css(styles.header)}>
-            You currently aren't part of any organization!
+            Du är just nu inte med i någon organisation!
           </div>
           <div>
-            If you got sent a link by somebody to start texting, ask that person to send you the link to join their organization. Then, come back here and start texting!
+            Om du kom hit efter att du klickat på en länk från någon som bjudit in dig till att SMS:a, fråga den personen igen att skicka en ny länk för att bjuda in dig till organisationen. Efter det, kom tillbaka hit så ska du kunna SMS:a!
           </div>
         </div>
       )
@@ -88,10 +88,10 @@ class Home extends React.Component {
     return (
       <div>
         <div className={css(styles.header)}>
-        Spoke is a new way to run campaigns using text messaging.
+          SMS-maskinen är ett nytt sätt att mobilisera folk via SMS.
         </div>
         <div>
-          <a id='login' className={css(styles.link_dark_bg)} href='/login' onClick={this.handleOrgInviteClick}>Login and get started</a>
+          <a id='login' className={css(styles.link_dark_bg)} href='/login' onClick={this.handleOrgInviteClick}>Logga in för att börja</a>
         </div>
       </div>
     )
@@ -102,7 +102,7 @@ class Home extends React.Component {
       <div className={css(styles.container)}>
         <div className={css(styles.logoDiv)}>
           <img
-            src='https://s3-us-west-1.amazonaws.com/spoke-public/spoke_logo.svg'
+            src='https://s3.eu-central-1.amazonaws.com/identity-live/uploads/sms-maskinen.svg'
             className={css(styles.logoImg)}
           />
         </div>

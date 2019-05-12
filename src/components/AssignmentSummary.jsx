@@ -110,7 +110,7 @@ export class AssignmentSummary extends Component {
           <CardActions>
             {(window.NOT_IN_USA && window.ALLOW_SEND_ALL) ? '' : this.renderBadgedButton({
               assignment,
-              title: 'Send first texts',
+              title: 'Skicka inledande meddelanden',
               count: unmessagedCount,
               primary: true,
               disabled: (useDynamicAssignment && !hasUnassignedContacts && unmessagedCount == 0) ? true : false,
@@ -119,7 +119,7 @@ export class AssignmentSummary extends Component {
             })}
             {(window.NOT_IN_USA && window.ALLOW_SEND_ALL) ? '' : this.renderBadgedButton({
               assignment,
-              title: 'Send replies',
+              title: 'Skicka svar',
               count: unrepliedCount,
               primary: false,
               disabled: false,
@@ -128,7 +128,7 @@ export class AssignmentSummary extends Component {
             })}
             {this.renderBadgedButton({
               assignment,
-              title: 'Past Messages',
+              title: 'Tidigare svar',
               count: pastMessagesCount,
               style: inlineStyles.pastMsgStyle,
               primary: false,

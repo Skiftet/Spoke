@@ -182,7 +182,7 @@ export class AssignmentTexterContact extends React.Component {
     const availableSteps = this.getAvailableInteractionSteps(questionResponses)
 
     let disabled = false
-    let disabledText = 'Sending...'
+    let disabledText = 'Skickar...'
     let snackbarOnTouchTap = null
     let snackbarActionTitle = null
     let snackbarError = null
@@ -190,14 +190,14 @@ export class AssignmentTexterContact extends React.Component {
     if (assignment.id !== contact.assignmentId || campaign.isArchived) {
       disabledText = ''
       disabled = true
-      snackbarError = 'Your assignment has changed'
+      snackbarError = 'Din tilldelning har ändrats'
       snackbarOnTouchTap = this.goBackToTodos
-      snackbarActionTitle = 'Back to Todos'
+      snackbarActionTitle = 'Tillbaka till Att-göra'
     } else if (contact.optOut) {
-      disabledText = 'Skipping opt-out...'
+      disabledText = 'Skippar avregistrering...'
       disabled = true
     } else if (!this.isContactBetweenTextingHours(contact)) {
-      disabledText = "Refreshing because it's now out of texting hours for some of your contacts"
+      disabledText = "Laddar om på grund av att vissa av dina kontakter befinner sig utanför kontaktbara tider"
       disabled = true
     }
 
@@ -210,7 +210,7 @@ export class AssignmentTexterContact extends React.Component {
       snackbarError,
       snackbarActionTitle,
       snackbarOnTouchTap,
-      optOutMessageText: "I'm opting you out of texts immediately. Have a great day.",
+      optOutMessageText: "Jag avregistrerar dig från våra meddelanden på direkten.",
       responsePopoverOpen: false,
       messageText: this.getStartingMessageText(),
       optOutDialogOpen: false,
@@ -348,7 +348,7 @@ export class AssignmentTexterContact extends React.Component {
       }
 
       if (e.message === 'Your assignment has changed') {
-        newState.snackbarActionTitle = 'Back to todos'
+        newState.snackbarActionTitle = 'Tillbaka till att-göra'
         newState.snackbarOnTouchTap = this.goBackToTodos
         this.setState(newState)
       } else {
@@ -362,7 +362,7 @@ export class AssignmentTexterContact extends React.Component {
     } else {
       log.error(e)
       this.setState({
-        snackbarError: 'Something went wrong!'
+        snackbarError: 'Någonting gick snett!'
       })
     }
   }
@@ -541,7 +541,7 @@ export class AssignmentTexterContact extends React.Component {
   }
 
   messageSchema = yup.object({
-    messageText: yup.string().required("Can't send empty message").max(window.MAX_MESSAGE_LENGTH)
+    messageText: yup.string().required('Meddelandet kan inte vara tomt').max(window.MAX_MESSAGE_LENGTH)
   })
 
   handleMessageFormChange = ({ messageText }) => this.setState({ messageText })
@@ -565,7 +565,7 @@ export class AssignmentTexterContact extends React.Component {
     const availableInteractionSteps = this.getAvailableInteractionSteps(questionResponses)
 
     return messages.length === 0 ? (<Empty
-      title={'This is your first message to ' + contact.firstName}
+      title={'Detta är ditt första meddelande till ' + contact.firstName}
       icon={<CreateIcon color='rgb(83, 180, 119)' />}
       hideMobile
     > </Empty>) : (
@@ -587,12 +587,12 @@ export class AssignmentTexterContact extends React.Component {
     if (messageStatus === 'closed') {
       button = (<RaisedButton
         onTouchTap={() => this.handleEditMessageStatus('needsResponse')}
-        label='Reopen'
+        label='Öppna igen'
       />)
     } else if (messageStatus === 'needsResponse') {
       button = (<RaisedButton
         onTouchTap={this.handleClickCloseContactButton}
-        label='Skip Reply'
+        label='Skippa svar'
       />)
     }
 
@@ -647,13 +647,13 @@ export class AssignmentTexterContact extends React.Component {
             >
               <RaisedButton
                 secondary
-                label='Opt out'
+                label='Avregistrera'
                 onTouchTap={this.handleOpenDialog}
-                tooltip='Opt out this contact'
+                tooltip='Avregistrera denna personen'
               />
               <RaisedButton
                 style={inlineStyles.mobileCannedReplies}
-                label='Canned replies'
+                label='Sparade svar'
                 onTouchTap={this.handleOpenPopover}
               />
               {this.renderNeedsResponseToggleButton(contact)}
@@ -680,14 +680,14 @@ export class AssignmentTexterContact extends React.Component {
               />
               {this.renderNeedsResponseToggleButton(contact)}
               <RaisedButton
-                label='Canned responses'
+                label='Sparade svar'
                 onTouchTap={this.handleOpenPopover}
               />
               <RaisedButton
                 secondary
-                label='Opt out'
+                label='Avregistrera'
                 onTouchTap={this.handleOpenDialog}
-                tooltip='Opt out this contact'
+                tooltip='Avregistrera denna personen'
                 tooltipPosition='top-center'
               />
               <div
@@ -713,7 +713,7 @@ export class AssignmentTexterContact extends React.Component {
           <IconButton
             onTouchTap={this.props.onExitTexter}
             style={inlineStyles.exitTexterIconButton}
-            tooltip='Return Home'
+            tooltip='Återvänd Hem'
             tooltipPosition='bottom-center'
           >
             <NavigateHomeIcon />
@@ -748,7 +748,7 @@ export class AssignmentTexterContact extends React.Component {
       <Card>
         <CardTitle
           className={css(styles.optOutCard)}
-          title='Opt out user'
+          title='Avregistrera användare'
         />
         <Divider />
         <CardActions className={css(styles.optOutCard)}>
@@ -768,14 +768,14 @@ export class AssignmentTexterContact extends React.Component {
             <div className={css(styles.dialogActions)}>
               <FlatButton
                 style={inlineStyles.dialogButton}
-                label='Cancel'
+                label='Avbryt'
                 onTouchTap={this.handleCloseDialog}
               />
               <Form.Button
                 type='submit'
                 style={inlineStyles.dialogButton}
                 component={GSSubmitButton}
-                label={this.state.optOutMessageText.length ? 'Send' : 'Opt Out without Text'}
+                label={this.state.optOutMessageText.length ? 'Skicka' : 'Avregistrera utan svar'}
               />
             </div>
           </GSForm>
@@ -814,7 +814,7 @@ export class AssignmentTexterContact extends React.Component {
           <Form.Field
             className={css(styles.textField)}
             name='messageText'
-            label='Your message'
+            label='Ditt meddelande'
             multiLine
             fullWidth
             rowsMax={6}

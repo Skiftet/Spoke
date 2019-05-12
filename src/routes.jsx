@@ -48,7 +48,7 @@ export default function makeRoutes(requireAuth = () => {}) {
       </Route>
       <Route path='app' component={TexterDashboard} onEnter={requireAuth}>
         <IndexRoute components={{ main: () => <DashboardLoader path='/app' />,
-                                  topNav: (p) => <TopNav title='Spoke Texting' orgId={p.params.organizationId} /> }} />
+                                  topNav: (p) => <TopNav title='SMS-maskinen' orgId={p.params.organizationId} /> }} />
         <Route path=':organizationId'>
           <IndexRedirect to='todos' />
           <Route path='faqs' components={{
@@ -61,7 +61,7 @@ export default function makeRoutes(requireAuth = () => {}) {
             <IndexRoute
               components={{
                 main: TexterTodoList,
-                topNav: (p) => <TopNav title='Spoke Texting' orgId={p.params.organizationId} />
+                topNav: (p) => <TopNav title='SMS-maskinen' orgId={p.params.organizationId} />
               }}
             />
             <Route path=':assignmentId'>

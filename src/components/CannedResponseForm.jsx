@@ -28,13 +28,13 @@ class CannedResponseForm extends React.Component {
             name='title'
             autoFocus
             fullWidth
-            label='Title'
+            label='Rubrik'
           />
           <Form.Field
             customFields={customFields}
             name='text'
             type='script'
-            label='Script'
+            label='Meddelande'
             multiLine
             fullWidth
           />
