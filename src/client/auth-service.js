@@ -19,8 +19,9 @@ export function login(nextUrl) {
         scope: 'openid profile email'
       }
     },
+    language: 'sv',
     languageDictionary: {
-      title: 'Spoke',
+      title: 'SMS-maskinen',
       signUpTerms: 'I agree to the <a href="' + window.PRIVACY_URL + '" target="_new">terms of service and privacy policy</a>.'
     },
     mustAcceptTerms: true,
@@ -32,18 +33,18 @@ export function login(nextUrl) {
     additionalSignUpFields: [{
       name: 'given_name',
       icon: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png',
-      placeholder: 'first name'
+      placeholder: 'förnamn'
     }, {
       name: 'family_name',
-      placeholder: 'last name',
+      placeholder: 'efternamn',
       icon: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png'
     }, {
       name: 'cell',
-      placeholder: 'cell phone',
+      placeholder: 'telefonnummer',
       icon: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png',
       validator: (cell) => ({
         valid: cell.length >= 10,
-        hint: 'Must be a valid phone number'
+        hint: 'Måste vara ett giltigt telefonnummer'
       })
     }]
   })
