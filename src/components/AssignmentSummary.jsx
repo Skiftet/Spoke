@@ -138,7 +138,7 @@ export class AssignmentSummary extends Component {
             })}
             {this.renderBadgedButton({
               assignment,
-              title: 'Skipped Messages',
+              title: 'Skippade meddelanden',
               count: skippedMessagesCount,
               style: inlineStyles.pastMsgStyle,
               primary: false,
@@ -148,7 +148,7 @@ export class AssignmentSummary extends Component {
             })}
             {(window.NOT_IN_USA && window.ALLOW_SEND_ALL) ? this.renderBadgedButton({
               assignment,
-              title: 'Send messages',
+              title: 'Skicka meddelanden',
               primary: true,
               disabled: false,
               contactsFilter: 'all',
@@ -157,7 +157,7 @@ export class AssignmentSummary extends Component {
             }) : ''}
             {this.renderBadgedButton({
               assignment,
-              title: 'Send later',
+              title: 'Skicka senare',
               count: badTimezoneCount,
               primary: false,
               disabled: true,
