@@ -22,7 +22,7 @@ export function login(nextUrl) {
     language: 'sv',
     languageDictionary: {
       title: 'SMS-maskinen',
-      signUpTerms: 'I agree to the <a href="' + window.PRIVACY_URL + '" target="_new">terms of service and privacy policy</a>.'
+      signUpTerms: 'Genom att du markerar rutan, fyller i dina uppgifter i ovannämnda fält och registrerar dig hos oss uppger du att uppgifterna tillhör dig, att du är minst 18 år gammal, att du har läst igenom och godkänner våra <a href="https://skiftet.org/anvandarvillkor" target="_blank">användarvillkor</a> och vår <a href="https://skiftet.org/personuppgiftspolicy" target="_blank">personuppgiftspolicy</a>.'
     },
     mustAcceptTerms: true,
     closable: false,
